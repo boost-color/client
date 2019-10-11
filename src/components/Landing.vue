@@ -8,7 +8,16 @@
 
 <script>
 export default {
-
+  data: function() {
+    return {
+      name: ''
+    }
+  },
+  methods: {
+    sendName: () => {
+      this.$emit('sendName', this.name)
+    }
+  }
 }
 </script>
 

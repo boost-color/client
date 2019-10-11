@@ -28,7 +28,7 @@ export default {
   components: {
     Landing, NavHome, Register,Login
   }
-}
+};
 // #49ACE9
 // #B62F8A
 // #F2D154
@@ -36,9 +36,9 @@ export default {
 </script>
 
 <style>
-*{
+* {
+  box-sizing: border-box;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
-
 </style>
