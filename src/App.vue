@@ -1,9 +1,11 @@
 <template>
 <div>
   <div v-if="!isLogin">
-  <NavHome></NavHome>
-  <Register ></Register>
-  <Login></Login>
+    <NavHome @changePage="changeTo"></NavHome>
+    <transition name="slide-fade">
+      <Register v-if="page==='register'" @changePage="changeTo"></Register>
+      <Login v-if="page==='login'" @changeLogin="changeStatus"></Login>
+    </transition>
   </div>
   <div v-else>
     <Main></Main>
@@ -28,6 +30,14 @@ export default {
   },
   components: {
     Landing, NavHome, Register,Login, Main
+  },
+  methods:{
+    changeTo(input){
+      this.page = input
+    },
+    changeStatus(input){
+      this.isLogin = input
+    }
   }
 };
 // #49ACE9
@@ -41,5 +51,15 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+body{
+  background-image: url(./assets/miring.png);
+  background-size: 15%
+}
+.slide-fade-enter-active {
+  animation: rotateInUpLeft 0.5s;
+}
+.slide-fade-leave-active {
+  animation: rotateInDownLeft 0.5s reverse;
 }
 </style>
