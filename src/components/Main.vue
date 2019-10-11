@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav>
-      <a id="logo" heref="#">LOGO</a>
+      <a id="logo" heref="#">
+        <img src="../assets/logobc.png" alt="Logo" style="height: 61px" />
+      </a>
       <button>Log Out</button>
     </nav>
     <main>
@@ -13,41 +15,11 @@
           </div>
         </div>
         <div id="container-img">
-          <b-row>
-            <b-col><b-card-group deck>
-            <b-card img-src="https://placekitten.com/1000/300" img-alt="Card image" img-top>
-              <b-card-text>
-                Some quick example text to build on the card and make up the bulk of the card's content.
-              </b-card-text>
-            </b-card>
-          </b-card-group></b-col>
-            <b-col><b-card-group deck>
-            <b-card img-src="https://placekitten.com/1000/300" img-alt="Card image" img-top>
-              <b-card-text>
-                Some quick example text to build on the card and make up the bulk of the card's content.
-              </b-card-text>
-            </b-card>
-          </b-card-group></b-col>
-            <b-col><b-card-group deck>
-            <b-card img-src="https://placekitten.com/1000/300" img-alt="Card image" img-top>
-              <b-card-text>
-                Some quick example text to build on the card and make up the bulk of the card's content.
-              </b-card-text>
-            </b-card>
-          </b-card-group></b-col>
-            <b-col><b-card-group deck>
-            <b-card img-src="https://placekitten.com/1000/300" img-alt="Card image" img-top>
-            </b-card>
-          </b-card-group></b-col>
-            <b-col><b-card-group deck>
-            <b-card img-src="https://placekitten.com/1000/300" img-alt="Card image" img-top>
-            </b-card>
-          </b-card-group></b-col>
-            <b-col><b-card-group deck>
-            <b-card img-src="https://placekitten.com/1000/300" img-alt="Card image" img-top>
-            </b-card>
-          </b-card-group></b-col>
-          </b-row>
+          <div class="box-card">
+            <div class="card" v-for="(p, i) in foto" :key="i">
+              <img src="../assets/photo.png" alt="Avatar" style="width:100%; height : 293px" />
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -56,7 +28,12 @@
 
 <script>
 export default {
-  name: "Main"
+  name: "Main",
+  data: function() {
+    return {
+      foto: [1, 2, 3, 4, 5]
+    };
+  }
 };
 </script>
 
@@ -72,14 +49,14 @@ nav {
 
 main {
   width: 100%;
-  padding-top: 100px;
+  padding-top: 30px;
   min-height: calc(100vh - 68px);
   background: #f5f5f5;
 }
 
 .container-main {
   background: #f5f5f5;
-  width: 80%;
+  width: 90%;
   height: 90%;
   margin: auto;
   display: flex;
@@ -103,7 +80,7 @@ main {
   padding: 2rem;
 }
 
-#main-text  {
+#main-text {
   text-align: center;
 }
 
@@ -118,5 +95,32 @@ main {
   width: 5rem;
   height: 2rem;
   text-align: center;
+}
+
+.box-card {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 40px;
+  width: 1000px;
+  padding-top: 10px;
+  margin: 0 auto;
+  justify-content: flex-start;
+}
+.card {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 293px;
+  height: 293px;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(250, 250, 250, 0.2);
+}
+.container {
+  padding: 2px 16px;
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  justify-content: space-between;
 }
 </style>
