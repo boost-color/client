@@ -1,9 +1,8 @@
 <template>
   <div>
-      <h1>
+      <section class="landingpg">
 
-      Helloo
-      </h1>
+      </section>
   </div>
 </template>
 
@@ -13,6 +12,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+*{
+    margin: 0;
+    padding: 0;
+}
+.landingpg{
+    background:black;
+    background-size: 100%;
+    height: 100vh;
+}
 </style>

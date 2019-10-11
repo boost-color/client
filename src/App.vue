@@ -1,26 +1,32 @@
 <template>
 <div>
   <div v-if="!isLogin">
-    <Landing></Landing>
+  <NavHome></NavHome>
+  <Register ></Register>
+  <Login></Login>
   </div>
   <div v-else>
+
   </div>
 </div>
 </template>
 
 <script>
 import Landing from './components/Landing.vue'
+import NavHome from './components/NavHome.vue'
+import Register from './components/Register.vue'
+import Login from './components/Login.vue'
 
 export default {
   data() {
     return {
       message: 'Hello world',
       isLogin: false,
-      page : 'landing'
+      page : 'login'
     }
   },
   components: {
-    Landing
+    Landing, NavHome, Register,Login
   }
 }
 // #49ACE9
@@ -30,5 +36,9 @@ export default {
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0
+}
 
 </style>

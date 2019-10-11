@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/boost-color/client#readme",
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.3",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.4"
   },
