@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="bg">
-      <div class="formlogin">
+      <div class="formlogin pb-5">
         <form>
           <h1>Log In</h1>
           <br />
@@ -14,7 +14,7 @@
             <input type="password" name id />
           </div>
           <div class="d-flex justify-content-center">
-            <b-button variant="warning m-4">Button</b-button>
+            <b-button variant="warning m-4">Submit</b-button>
           </div>
         </form>
       </div>
@@ -43,7 +43,7 @@ export default {
   background: url("/src/assets/colorize.png") no-repeat;
   background-position: right;
   background-size: 60%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 69px);
 }
 .white {
   background: white;
@@ -52,11 +52,12 @@ export default {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
 }
 form {
   padding: 50px;
-  margin: 5%;
+  margin: 3%;
   width: 500px;
   display: flex;
   flex-direction: column;

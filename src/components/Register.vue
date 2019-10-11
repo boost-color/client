@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .register {
   background-color: rgb(250, 216, 94);
-  height: calc(100vh - 60px);
+  height: calc(100vh - 68px);
 }
 .flexin {
   display: flex;
@@ -44,7 +44,7 @@ export default {
 .bg {
   background: url("/src/assets/photo.png") no-repeat;
   background-size: 62.5%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 68px);
 }
 .white {
   background: white;
