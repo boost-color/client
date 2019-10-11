@@ -1,59 +1,61 @@
 <template>
-<div class="login">
-  <div class="bg">
-    <div class="formsignup">
-      <form>
-        <div class="flexin">
-
-<label for="email">Email</label>
- <input type="email" name="email" id="inputemail">
-        </div>
-        <div class="flexin">
-
- <label for="password">Password</label>
- <input type="password" name="" id="">
-        </div>
-  <b-button variant="warning">Button</b-button>
-      </form>
+  <div class="login">
+    <div class="bg">
+      <div class="formlogin">
+        <form>
+          <h1>Log In</h1>
+          <br />
+          <div class="flexin mb-2">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="inputemail" />
+          </div>
+          <div class="flexin mb-2">
+            <label for="password">Password</label>
+            <input type="password" name id />
+          </div>
+          <div class="d-flex justify-content-center">
+            <b-button variant="warning m-4">Button</b-button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
-  name: 'Login'
-
-}
+  name: "Login"
+};
 </script>
 
 <style scoped>
-.login{
-    display: flex;
-    justify-content: flex-end;
-  background-color: rgb(82, 33, 114)
-}
-.flexin{
+.login {
   display: flex;
-  flex-direction: column
+  justify-content: flex-end;
+  background-color: rgb(82, 33, 114);
 }
-.bg{
-    width: 100vw;
-    background: url('/src/assets/colorize.png') no-repeat;
-     background-position: right;
-    background-size: 60%; 
-    height: calc(100vh - 60px);
+.flexin {
+  display: flex;
+  flex-direction: column;
 }
-.white{
-background: white
+.bg {
+  width: 100vw;
+  background: url("/src/assets/colorize.png") no-repeat;
+  background-position: right;
+  background-size: 60%;
+  height: calc(100vh - 60px);
 }
-.formsignup{
+.white {
+  background: white;
+}
+.formlogin {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  height: 100%
+  height: 100%;
 }
-form{
+form {
+  padding: 50px;
   margin: 5%;
   width: 500px;
   display: flex;
@@ -61,14 +63,17 @@ form{
   justify-content: space-around;
   height: 30%;
 }
-input{
-  height: 21pt
+input {
+  height: 21pt;
 }
-label{
+label {
   font-size: 18pt;
-  text-align: center;
+  text-align: left;
+  margin-left: 5px;
   margin-bottom: 5px;
-  color: white
+  color: white;
 }
-
+h1 {
+  color: white;
+}
 </style>
