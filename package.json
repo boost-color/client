@@ -23,7 +23,8 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "vue": "^2.6.10",
-    "vue-hot-reload-api": "^2.3.4"
+    "vue-hot-reload-api": "^2.3.4",
+    "vuesax": "^3.10.5"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.0.0",

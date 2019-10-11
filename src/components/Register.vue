@@ -4,21 +4,21 @@
       <div class="formsignup">
         <form @submit.prevent="registerMe">
           <h1>Register</h1>
-          <br>
+          <br />
           <div class="flexin mb-2">
             <label for="name">Name</label>
-            <input type="text" name="name" id="inputname" v-model="registName"/>
+            <input type="text" name="name" id="inputname" v-model="registName" />
           </div>
           <div class="flexin mb-2">
             <label for="email">Email</label>
-            <input type="email" name="email" id="inputemail"  v-model="registEmail"/>
+            <input type="email" name="email" id="inputemail" v-model="registEmail" />
           </div>
           <div class="flexin mb-2">
             <label for="password">Password</label>
-            <input type="password" name id v-model="registPassword"/>
+            <input type="password" name id v-model="registPassword" />
           </div>
           <div class="d-flex justify-content-center">
-          <b-button variant="dark m-4" class="purpleme" type="submit">Submit</b-button>
+            <b-button variant="dark m-4" class="purpleme" type="submit">Submit</b-button>
           </div>
         </form>
       </div>
@@ -31,36 +31,47 @@ export default {
   name: "Register",
   data() {
     return {
-      registName: '',
-      registEmail: '',
-      registPassword: '',
-      baseUrl: 'http://34.70.15.199'
-    }
+      registName: "",
+      registEmail: "",
+      registPassword: "",
+      baseUrl: "http://34.70.15.199"
+    };
   },
   methods: {
-    registerMe(){
+    registerMe() {
+      Swal.fire({
+        title: `Creating Account ......`,
+        allowOutsideClick: () => !Swal.isLoading()
+      });
+      Swal.showLoading();
       axios({
-        method: 'post',
+        method: "post",
         url: `${this.baseUrl}/user/register`,
-        data : {
-          name : this.registName,
-          email: this.registEmail, 
+        data: {
+          name: this.registName,
+          email: this.registEmail,
           password: this.registPassword
         }
       })
-      .then(({data})=>{
-        console.log(data)
-        this.$emit('changePage', 'login')
-      })
-      .catch(err =>{
-        let errors = err.response.data.message
-        console.log(errors);
-      })
-        this.registName =''
-        this.registPassword=''
-        this.registEmail =''
+        .then(({ data }) => {
+          this.$emit("changePage", "login");
+          Swal.close();
+          Swal.fire("Success!", `Create Account Success`, "success");
+        })
+        .catch(err => {
+          let msg = "Register Fail";
+          if (err.responseJSON) {
+            msg = err.responseJSON.message;
+          }
+          Swal.fire("Error!", msg, "error");
+        })
+        .finally(() => {
+          this.registName = "";
+          this.registPassword = "";
+          this.registEmail = "";
+        });
     }
-  },
+  }
 };
 </script>
 
@@ -95,12 +106,12 @@ export default {
   align-items: flex-end;
   flex-direction: column;
 }
-.purpleme{
-  background-color: #65298d
+.purpleme {
+  background-color: #65298d;
 }
-.purpleme:hover{
-  background-color:#7d46a1;
-  border:  1px solid #7d46a1;
+.purpleme:hover {
+  background-color: #7d46a1;
+  border: 1px solid #7d46a1;
 }
 
 form {
