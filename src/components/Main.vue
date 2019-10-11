@@ -89,10 +89,10 @@ export default {
         .then(({ data }) => {
           this.fatch();
           Swal.close();
-          Swal.fire("Success!", "Create Article Success", "success");
+          Swal.fire("Success!", "Upload Photo Success", "success");
         })
         .catch(err => {
-          let msg = error.response.data.message || "Create Article Failed";
+          let msg = error.response.data.message || "Upload Photo Failed";
           Swal.fire("Error!", msg, "error");
         })
         .finally(() => {
@@ -113,7 +113,7 @@ export default {
           this.detail = false;
         })
         .catch(err => {
-          let msg = error.response.data.message || "Create Article Failed";
+          let msg = error.response.data.message;
           console.log(msg);
         });
     }
