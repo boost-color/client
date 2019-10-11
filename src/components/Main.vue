@@ -4,20 +4,33 @@
       <a id="logo" heref="#">
         <img src="../assets/logobc.png" alt="Logo" style="height: 61px" />
       </a>
-      <button>Log Out</button>
+
+      <i class="fas fa-sign-out-alt fa-2x" id="logout-btn" @click.prevent="logout"></i>
     </nav>
+    <Detail v-if="detail" :infophoto="infophoto" @getclosedetail="closedetail" @fatchdata="fatch"></Detail>
     <main>
       <div class="container-main">
         <div id="upload">
           <div id="main-text">
             <p>Welcome to boostcolor!</p>
-            <button @click.prevent="uploadImg()">Upload Image!</button>
+            <form enctype="multipart/form-data" @submit.prevent="uploadImg">
+              <input type="file" ref="image" accept="image/*" @change="handleimage" required />
+              <input type="submit" value="Get Colorized!" id="upload-btn" />
+            </form>
           </div>
         </div>
         <div id="container-img">
-          <div class="box-card">
-            <div class="card" v-for="(p, i) in foto" :key="i">
-              <img src="../assets/photo.png" alt="Avatar" style="width:100%; height : 293px" />
+          <div v-if="photos.length == 0">
+            <h1>NO PHOTO</h1>
+          </div>
+          <div class="box-card" v-else>
+            <div class="card" v-for="(p, i) in photos" :key="i">
+              <img
+                @click.prevent="toDetail(p)"
+                :src="p.photo"
+                alt="Avatar"
+                style="width:100%; height : 293px; object-fit:contain; cursor: pointer"
+              />
             </div>
           </div>
         </div>
@@ -27,12 +40,86 @@
 </template>
 
 <script>
+import Detail from "../components/Detail";
 export default {
   name: "Main",
   data: function() {
     return {
-      foto: [1, 2, 3, 4, 5]
+      photos: [],
+      photo: null,
+      infophoto: null,
+      detail: false
     };
+  },
+  components: {
+    Detail
+  },
+  methods: {
+    closedetail() {
+      this.detail = false;
+    },
+    logout() {
+      localStorage.clear();
+      this.$emit("logout", false);
+    },
+    toDetail(payload) {
+      this.infophoto = payload;
+      this.detail = true;
+    },
+    handleimage() {
+      this.photo = this.$refs.image.files[0];
+    },
+    uploadImg() {
+      let formData = new FormData();
+      formData.append("photo", this.photo);
+
+      Swal.fire({
+        title: `Uploading .....`,
+        allowOutsideClick: () => !Swal.isLoading()
+      });
+      Swal.showLoading();
+      axios({
+        method: `post`,
+        url: `http://34.70.15.199/boost`,
+        data: formData,
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+        .then(({ data }) => {
+          this.fatch();
+          Swal.close();
+          Swal.fire("Success!", "Upload Photo Success", "success");
+        })
+        .catch(err => {
+          let msg = error.response.data.message || "Upload Photo Failed";
+          Swal.fire("Error!", msg, "error");
+        })
+        .finally(() => {
+          this.photo = null;
+        });
+    },
+    fatch() {
+      axios({
+        method: `get`,
+        url: `http://34.70.15.199/boost`,
+        headers: {
+          token: localStorage.getItem("token"),
+          userId: localStorage.getItem("id")
+        }
+      })
+        .then(({ data }) => {
+          this.photos = data;
+          this.detail = false;
+        })
+        .catch(err => {
+          let msg = error.response.data.message;
+          console.log(msg);
+        });
+    }
+  },
+  created() {
+    this.fatch();
   }
 };
 </script>
@@ -45,6 +132,7 @@ nav {
   background-color: black;
   color: white;
   justify-content: space-between;
+  align-items: center;
 }
 
 main {
@@ -122,5 +210,25 @@ main {
   flex-direction: column;
   height: 280px;
   justify-content: space-between;
+}
+#logout-btn {
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+#upload-btn {
+  width: 120px;
+  height: 30px;
+  color: #f5f5f5;
+  font-size: 15px;
+  background: #e48015;
+  border: none;
+  transition: 0.3s;
+}
+
+#upload-btn:hover {
+  border: 1px solid black;
+  background: #f5f5f5;
+  color: black;
 }
 </style>

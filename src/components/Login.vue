@@ -34,6 +34,11 @@ export default {
   },
   methods: {
     signMe() {
+      Swal.fire({
+        title: `Loggin In ......`,
+        allowOutsideClick: () => !Swal.isLoading()
+      });
+      Swal.showLoading();
       axios({
         method: "post",
         url: `${this.baseUrl}/user/login`,
@@ -43,16 +48,25 @@ export default {
         }
       })
         .then(({ data }) => {
-          console.log(data.token)
-          localStorage.setItem("token", data.token)
-          this.$emit("changeLogin", true)
+          console.log(data.token);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("name", data.name);
+          localStorage.setItem("id", data.id);
+          this.$emit("changeLogin", true);
+          Swal.close();
+          Swal.fire("Success!", `Logged In Success`, "success");
         })
         .catch(err => {
-        let errors = err.response.data.message
-        console.log(errors);
+          let msg = "Fail to Login";
+          if (err.responseJSON) {
+            msg = err.responseJSON.message;
+          }
+          Swal.fire("Error!", msg, "error");
         })
-        this.emaillog = ''
-        this.passwordlog = ''
+        .finally(() => {
+          this.passwordlog = "";
+          this.emaillog = "";
+        });
     }
   }
 };
