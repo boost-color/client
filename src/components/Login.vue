@@ -2,19 +2,19 @@
   <div class="login">
     <div class="bg">
       <div class="formlogin pb-5">
-        <form>
+        <form @submit.prevent="signMe">
           <h1>Log In</h1>
           <br />
           <div class="flexin mb-2">
             <label for="email">Email</label>
-            <input type="email" name="email" id="inputemail" />
+            <input type="email" name="email" id="inputemail" v-model="emaillog" />
           </div>
           <div class="flexin mb-2">
             <label for="password">Password</label>
-            <input type="password" name id />
+            <input type="password" name id v-model="passwordlog" />
           </div>
           <div class="d-flex justify-content-center">
-            <b-button variant="warning m-4">Submit</b-button>
+            <b-button variant="warning m-4" type="submit">Submit</b-button>
           </div>
         </form>
       </div>
@@ -24,11 +24,50 @@
 
 <script>
 export default {
-  name: "Login"
+  name: "Login",
+  data() {
+    return {
+      emaillog: "",
+      passwordlog: "",
+      baseUrl: "http://34.70.15.199"
+    };
+  },
+  methods: {
+    signMe() {
+      axios({
+        method: "post",
+        url: `${this.baseUrl}/user/login`,
+        data: {
+          email: this.emaillog,
+          password: this.passwordlog
+        }
+      })
+        .then(({ data }) => {
+          console.log(data.token)
+          localStorage.setItem("token", data.token)
+          this.$emit("changeLogin", true)
+        })
+        .catch(err => {
+        let errors = err.response.data.message
+        console.log(errors);
+        })
+        this.emaillog = ''
+        this.passwordlog = ''
+    }
+  }
 };
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 .login {
   display: flex;
   justify-content: flex-end;

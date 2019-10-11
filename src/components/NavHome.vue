@@ -4,16 +4,29 @@
       <img src="../assets/logobc.png" alt srcset />
     </div>
     <div class="click">
-      <h2>Register</h2>
-      <h2>Login</h2>
+      <h2 @click="toRegist">Register</h2>
+      <h2 @click="toLogin">Login</h2>
     </div>
   </nav>
 </template>
 
 <script>
 export default {
-  name: "NavHome"
-};
+  name: "NavHome",
+  data() {
+    return {
+      
+    }
+  },
+  methods: {
+    toRegist(){
+      this.$emit('changePage', 'register')
+    },
+    toLogin(){
+      this.$emit('changePage', 'login')
+    }
+  },
+}
 </script>
 
 <style scoped>
