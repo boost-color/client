@@ -6,7 +6,7 @@
   <Login></Login>
   </div>
   <div v-else>
-
+    <Main></Main>
   </div>
 </div>
 </template>
@@ -16,17 +16,18 @@ import Landing from './components/Landing.vue'
 import NavHome from './components/NavHome.vue'
 import Register from './components/Register.vue'
 import Login from './components/Login.vue'
+import Main from './components/Main.vue'
 
 export default {
   data() {
     return {
       message: 'Hello world',
-      isLogin: false,
+      isLogin: true,
       page : 'login'
     }
   },
   components: {
-    Landing, NavHome, Register,Login
+    Landing, NavHome, Register,Login, Main
   }
 };
 // #49ACE9
