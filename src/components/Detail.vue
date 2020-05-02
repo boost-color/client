@@ -96,22 +96,22 @@ export default {
         confirmButtonText: "Yes, delete it!"
       }).then(result => {
         if (result.value) {
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          axios({
+            method: `delete`,
+            url: `http://34.70.15.199/boost/${id}`,
+            headers: {
+              token: localStorage.getItem("token")
+            }
+          })
+            .then(() => {
+              this.$emit("fatchdata");
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            })
+            .catch(err => {
+              console.log(err);
+            });
         }
       });
-      axios({
-        method: `delete`,
-        url: `http://34.70.15.199/boost/${id}`,
-        headers: {
-          token: localStorage.getItem("token")
-        }
-      })
-        .then(() => {
-          this.$emit("fatchdata");
-        })
-        .catch(err => {
-          console.log(err);
-        });
     }
   },
   created() {

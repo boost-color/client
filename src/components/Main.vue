@@ -80,7 +80,8 @@ export default {
       Swal.showLoading();
       axios({
         method: `post`,
-        url: `http://34.70.15.199/boost`,
+        url: "http://localhost:3000/boost",
+        // url: `http://34.70.15.199/boost`,
         data: formData,
         headers: {
           token: localStorage.getItem("token")
@@ -102,7 +103,8 @@ export default {
     fatch() {
       axios({
         method: `get`,
-        url: `http://34.70.15.199/boost`,
+        url: "http://localhost:3000/boost",
+        // url: `http://34.70.15.199/boost`,
         headers: {
           token: localStorage.getItem("token"),
           userId: localStorage.getItem("id")

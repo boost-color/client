@@ -1,7 +1,6 @@
 <template>
   <div>
       <section class="landingpg">
-
       </section>
   </div>
 </template>

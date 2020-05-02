@@ -17,6 +17,6 @@ At least we still have our documentation [(demo)](https://github.com/boost-color
 
 ## GETTING STARTED
 ```
-npm install pascal 
+npm install pascal
 pascal index.html
 ```

@@ -56,10 +56,7 @@ export default {
     }
   }
 };
-// #49ACE9
-// #B62F8A
-// #F2D154
-// balck
+
 </script>
 
 <style>

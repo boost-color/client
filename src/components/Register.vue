@@ -34,7 +34,8 @@ export default {
       registName: "",
       registEmail: "",
       registPassword: "",
-      baseUrl: "http://34.70.15.199"
+      // baseUrl: "http://34.70.15.199"
+      baseUrl: "http://localhost:3000"
     };
   },
   methods: {

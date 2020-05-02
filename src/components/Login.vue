@@ -29,7 +29,8 @@ export default {
     return {
       emaillog: "",
       passwordlog: "",
-      baseUrl: "http://34.70.15.199"
+      baseUrl: "http://localhost:3000/boost",
+      // baseUrl: "http://34.70.15.199"
     };
   },
   methods: {
