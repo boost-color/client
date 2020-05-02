@@ -2,7 +2,7 @@
 
 ![alt](./src/assets/logobc.png)
 
-### **ANNOUNCMENT**
+## ANNOUNCMENT
 Our website is unavailable since December 2019 and We would like to say **Good Bye!** <br>
 At least we still have our documentation [(demo)](https://github.com/boost-color/client#DEMO) in client side :love_letter:
 <br>
@@ -18,7 +18,7 @@ At least we still have our documentation [(demo)](https://github.com/boost-color
 ![alt](./src/assets/demo.gif)
 ---
 
-### **GETTING STARTED**
+## GETTING STARTED
 ```
 npm install pascal 
 pascal index.html
